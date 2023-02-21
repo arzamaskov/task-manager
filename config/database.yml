@@ -16,6 +16,9 @@
 #
 default: &default
   adapter: postgresql
+  host: <%= ENV['DATABASE_HOST'] || 'localhost' %>
+  username: <%= ENV['DATABASE_USERNAME'] || nil %>
+  password: <%= ENV['DATABASE_PASSWORD'] %>
   encoding: unicode
   # For details on connection pooling, see Rails configuration guide
   # https://guides.rubyonrails.org/configuring.html#database-pooling
@@ -23,7 +26,7 @@ default: &default
 
 development:
   <<: *default
-  database: task_manager_development
+  database: <%= ENV['DATABASE_NAME'] || 'task_manager_development' %>
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
